@@ -1,8 +1,8 @@
 Vagrant.configure("2") do |config|
 
     # make a VM for each user in ./users
-    File.open("users", "r") do |f|
-    #File.open("users.test", "r") do |f|
+    #File.open("users", "r") do |f|
+    File.open("users.test", "r") do |f|
         f.each_line do |line|
 
             config.vm.define line do |user|
