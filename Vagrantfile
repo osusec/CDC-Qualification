@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
 
             config.vm.define line do |user|
                 # define the base box
-                user.vm.box = "xenial64"
+                user.vm.box = "ubuntu/xenial64"
                 user.vm.hostname = "#{user}-cdc-qual"
                 user.vm.box_url = "ubuntu/xenial64"
 
