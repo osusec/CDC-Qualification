@@ -4,8 +4,11 @@ Vagrant.configure("2") do |config|
     #File.open("users", "r") do |f|
     File.open("users.test", "r") do |f|
         f.each_line do |line|
+            # remove newline from line
+            line = line.delete("\n")
 
             config.vm.define line do |user|
+
                 # define the base box
                 user.vm.box = "ubuntu/xenial64"
                 user.vm.hostname = "#{user}-cdc-qual"
