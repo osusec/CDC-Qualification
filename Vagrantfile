@@ -7,12 +7,14 @@ Vagrant.configure("2") do |config|
 
             config.vm.define line do |user|
                 # define the base box
-                user.vm.box = "ubuntu/xenial64"
+                user.vm.box = "xenial64"
+                user.vm.hostname = "#{user}-cdc-qual"
+                user.vm.box_url = "ubuntu/xenial64"
 
                 # configure the vbox instance
                 user.vm.provider :virtualbox do |v|
                     v.customize ["modifyvm", :id, "--memory", 2048]
-                    v.customize ["modifyvm", :id, "--name", user]
+                    v.customize ["modifyvm", :id, "--name", "#{user}"]
                 end
 
                 # disable the shared folder
@@ -21,7 +23,7 @@ Vagrant.configure("2") do |config|
                 # provision the VM
                 user.vm.provision "shell" do |s|
                     s.path = "provision.sh"
-                    s.args = user
+                    s.args = "#{user}"
                 end
             end
         end
