@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
                 # provision the VM
                 user.vm.provision "shell" do |s|
                     s.path = "provision.sh"
-                    s.args = [user]
+                    s.args = user
                 end
             end
         end
