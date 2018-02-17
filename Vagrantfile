@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
 
                 # configure networking
                 #user.vm.network "public_network", use_dhcp_assigned_default_route: true
-                user.vm.network "public_network", ip: ip
+                user.vm.network "public_network", ip: ip, bridge: "ens192"
 
                 # configure ssh
                 #user.ssh.host = ip
