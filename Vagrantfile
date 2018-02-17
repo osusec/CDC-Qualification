@@ -8,6 +8,8 @@ Vagrant.configure("2") do |config|
         f.each_line do |line|
             # remove newline from line
             line = line.delete("\n")
+            ip = "192.168.42.#{ip_last}"
+            ip_last += 1
 
             config.vm.define line do |user|
                 # define the base box
@@ -22,8 +24,10 @@ Vagrant.configure("2") do |config|
                 end
 
                 # configure networking
-                user.vm.network :public_network, bridge: "ens192"
-                ip_last += 1
+                user.vm.network :public_network, bridge: "ens192", ip: ip
+
+                # configure ssh
+                user.ssh.host = ip
 
                 # disable the shared folder
                 user.vm.synced_folder ".", "/vagrant", disabled: true
