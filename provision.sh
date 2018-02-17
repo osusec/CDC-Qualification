@@ -9,3 +9,4 @@ usermod -aG sudo $1
 
 # allow password-based ssh login
 sed -i '/PasswordAuthentication/c\PasswordAuthentication yes' /etc/ssh/sshd_config
+service ssh restart
