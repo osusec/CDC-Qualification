@@ -1,4 +1,5 @@
 ip_last = 80
+port = 2200
 
 Vagrant.configure("2") do |config|
 
@@ -22,8 +23,16 @@ Vagrant.configure("2") do |config|
                 end
 
                 # configure networking
-                user.vm.network :private_network, ip: "192.168.42.#{ip_last}"
+                user.vm.network :public_network, ip: "192.168.42.#{ip_last}"
                 ip_last += 1
+                user.vm.network :forwarded_port do |f|
+                    f.guest: 22
+                    f.host: port
+                    f.host_ip: "0.0.0.0"
+                    f.id: "ssh"
+                    f.auto_correct: true
+                end
+                port += 1
 
                 # disable the shared folder
                 user.vm.synced_folder ".", "/vagrant", disabled: true
