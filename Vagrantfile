@@ -1,4 +1,4 @@
-ip_last = 1
+ip_last = 2
 
 Vagrant.configure("2") do |config|
 
@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
 
                 # configure networking
                 #user.vm.network "public_network", use_dhcp_assigned_default_route: true
-                user.vm.network "private_network", ip
+                user.vm.network "private_network", ip: ip
 
                 # configure ssh
                 #user.ssh.host = ip
