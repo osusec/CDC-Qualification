@@ -24,10 +24,7 @@ Vagrant.configure("2") do |config|
                 end
 
                 # configure networking
-                user.vm.network "public_network", auto_config: false
-                user.vm.provision "shell",
-                    run: "always",
-                    inline: "ifconfig eth1 #{ip} netmask 255.255.255.0 up; route add default gw 192.168.42.20"
+                user.vm.network "public_network", use_dhcp_assigned_default_route: true
 
                 # configure ssh
                 user.ssh.host = ip
