@@ -27,9 +27,15 @@ Vagrant.configure("2") do |config|
                 end
 
                 # configure networking
-                #user.vm.network "public_network", use_dhcp_assigned_default_route: true
-                user.vm.network "private_network", ip: ip
+                user.vm.network "public_network", ip: ip
+                user.vm.provision "shell",
+                    run: "always",
+                    inline: "route add default gw 192.168.42.20"
 
+                config.vm.provision "shell",
+                    run: "always",
+                    inline: "eval `route -n | awk '{ if ($8 ==\"eth0\" && $2 != \"0.0.0.0\") print \"route del default gw \" $2; }'`"
+                    
                 # configure ssh
                 #user.ssh.host = ip
                 #user.ssh.forward_agent = true
