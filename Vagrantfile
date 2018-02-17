@@ -1,4 +1,4 @@
-ip_last = 80
+ip_last = 1
 
 Vagrant.configure("2") do |config|
 
@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
         f.each_line do |line|
             # remove newline from line
             line = line.delete("\n")
-            ip = "192.168.42.#{ip_last}"
+            ip = "192.168.43.#{ip_last}"
             ip_last += 1
 
             config.vm.define line do |user|
@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
 
                 # configure networking
                 #user.vm.network "public_network", use_dhcp_assigned_default_route: true
-                user.vm.network "public_network"
+                user.vm.network "private_network", ip
 
                 # configure ssh
                 #user.ssh.host = ip
