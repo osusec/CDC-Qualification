@@ -1,3 +1,6 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
 ip_last = 2
 
 Vagrant.configure("2") do |config|
