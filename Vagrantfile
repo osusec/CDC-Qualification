@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
                 end
 
                 # configure networking
-                user.vm.network :private_network, ip: "192.168.42.#{ip_last}"
+                user.vm.network :public_network, bridge: "ens192"
                 ip_last += 1
 
                 # disable the shared folder
