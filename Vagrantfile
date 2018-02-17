@@ -26,11 +26,11 @@ Vagrant.configure("2") do |config|
                 user.vm.network :public_network, ip: "192.168.42.#{ip_last}"
                 ip_last += 1
                 user.vm.network :forwarded_port do |f|
-                    f.guest: 22
-                    f.host: port
-                    f.host_ip: "0.0.0.0"
-                    f.id: "ssh"
-                    f.auto_correct: true
+                    f.host = port
+                    f.guest = 22
+                    f.host_ip = "0.0.0.0"
+                    f.id = "ssh"
+                    f.auto_correct = true
                 end
                 port += 1
 
