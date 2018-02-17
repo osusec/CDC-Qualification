@@ -24,10 +24,12 @@ Vagrant.configure("2") do |config|
                 end
 
                 # configure networking
-                user.vm.network "public_network", use_dhcp_assigned_default_route: true
+                #user.vm.network "public_network", use_dhcp_assigned_default_route: true
+                user.vm.network "public_network", ip: ip
 
                 # configure ssh
-                user.ssh.host = ip
+                #user.ssh.host = ip
+                user.ssh.forward_agent = true
 
                 # disable the shared folder
                 user.vm.synced_folder ".", "/vagrant", disabled: true
