@@ -1,3 +1,5 @@
+ip_last = 80
+
 Vagrant.configure("2") do |config|
 
     # make a VM for each user in ./users
@@ -18,6 +20,10 @@ Vagrant.configure("2") do |config|
                     v.customize ["modifyvm", :id, "--memory", 2048]
                     v.customize ["modifyvm", :id, "--name", "#{line}"]
                 end
+
+                # configure networking
+                user.vm.network :private_network, ip: "192.168.42.#{ip_last}"
+                ip_last += 1
 
                 # disable the shared folder
                 user.vm.synced_folder ".", "/vagrant", disabled: true
